@@ -10,11 +10,10 @@ the software is written in, and no matter which platform it is designed to run o
 there are common practices and tools we consider to be **essential**. This is what
 we call the "ante".
 
-Unfortunately, in some software communities, these essential tools and practices
-are quite difficult to integrate, and there is little education on their purpose
-or benefits. The Ante team aims to close this gap, enabling software professionals
-veteran and inexperienced alike to learn (or re-learn) the basics of shipping
-quality software.
+These essential tools and practices can often be quite difficult to integrate,
+and there is little education on their purpose or benefits. The Ante team aims
+to close this gap, enabling software professionals veteran and inexperienced
+alike to learn (or re-learn) the basics of shipping quality software.
 
 ## Our Vision
 
@@ -32,11 +31,53 @@ Ante bootstraps and teaches workflows for many aspects of a software project.
 
 ### Build Toolchain
 
-A straight-forward build process is essential.
+A straight-forward build process is essential to would-be contributors of a project,
+and has a direct impact on the day-to-day experience of building software. The build
+process should be:
+
+ * **Usable**: Performing a build should be a single command that feels natural.
+
+ * **Predictable**: A build should produce identical artifacts when given identical input, every time.
+
+ * **Lean**: Only perform the necessary tasks to produce working software.
 
 ### Dependency Management
 
-Understanding the essential features of dependency management tools, having a strategy for how to incorporate dependency upgrades into a system, and defining a strategy for working with dependencies are all crucial to a project's health.
+All projects either expose some modules for reuse by other projects, consume
+modules from other projects, or both. Therefore, it is important to understand
+*how* projects integrate in this ecosystem, both as publishers and consumers.
+
+Some important decisions to make include:
+
+ * Will this project have dependencies?
+ * What is the process for introducing a new dependency into this project?
+   * Are there quality metrics you want to take into consideration?
+     * Licensing: Does the project have a license more restrictive than your project? Will it introduce new legal constraints?
+     * Documentation: Does the project have useful documentation? How thorough does it need to be?
+     * Support: Does the project have a track record of providing its users with good support?
+     * Community: Does the project have an active community of contributors? Is it just one person? How many is good enough?
+     * Code Quality: Does the code appear to be well structured and readable?
+     * Code Quantity: Is the size, on disk, of the project within an acceptable threshold? How much is too large?
+     * Test Coverage: Does the project follow healthy automated testing practices? How much coverage is good enough?
+     * Reputation: Does the project have a good reputation? How good does it need to be?
+     * Popularity: Is the project used by lots of people? How many people is enough?
+     * Stability: Does the project change its API rapidly? Will it be difficult to keep up?
+ * What is the process for updating an existing dependency in this project?
+   * How will you know when updates are available?
+   * How will you know what the contents of these updates are?
+   * How will you know whether an update will require additional changes in your project?
+   * How will you know *when* you should perform the update?
+     * Bug fixes and security fixes, for example, should be applied as soon as possible.
+     * Additive changes, for example, are not necessary until/unless the additional features are needed.
+     * Destructive changes, for example, may not be desired without further refactoring.
+ * How will versions of this project be released?
+   * A versioning strategy can communicate, to some degree, the *nature* of changes introduced in a release.
+   * Release notes and/or change logs can describe the *details* of changes in a release.
+   * Cryptographic signing can help others verify the *authenticity* of a release.
+   * Cryptographic hashes can help others verify the *integrity* of a release.
+   * Publishing the project such that it can be consumed as a dependency in the
+     same way that it would consume dependencies, itself, provides *consistency*
+     across dependency consumption within the ecosystem.
 
 ### Documentation
 
